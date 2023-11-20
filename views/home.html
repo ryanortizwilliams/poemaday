@@ -1,2 +1,17 @@
-<h1>Test</h1>
-<p>{{poemData | json}}</p>
+<div class="row my-4 d-flex text-center">
+  <p>
+    <i class="fa-solid fa-circle-arrow-left"></i> {{date | date: 'EEEE M/dd'}}
+    <i class="fa-solid fa-circle-arrow-right"></i>
+  </p>
+</div>
+
+<div class="row text-center d-flex justify-content-center">
+  <div class="col-12 w-50">
+    <h1>{{poemData.title}}</h1>
+    <h6 class="mb-3">
+      By: {{poemData.author}} | {{poemData.linecount | number}} lines
+    </h6>
+    <hr />
+    <p ng-repeat="line in poemData.lines track by $index">{{line}}</p>
+  </div>
+</div>
