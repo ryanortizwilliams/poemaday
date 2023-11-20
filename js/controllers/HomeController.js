@@ -12,7 +12,7 @@ app.controller("HomeController", [
 
     //check if a poem was added today yet
     // comparing two dates.
-    $scope.today = new Date();
+    $scope.today = new Date().toDateString();
 
     //get date of last item in poem library
     let lastPosition;
@@ -25,11 +25,13 @@ app.controller("HomeController", [
     }
 
     if ($scope.poemLibrary[lastPosition]) {
+      console.log("poemLibaray[lastPosition]");
+      console.log(typeof $scope.poemLibrary[lastPosition].date);
       $scope.lastPositionDate = $scope.poemLibrary[lastPosition].date | "";
       console.log($scope.lastPositionDate);
     }
 
-    if ($scope.today.toDateString() !== $scope.lastPositionDate) {
+    if ($scope.today !== $scope.lastPositionDate) {
       //generate new poem
       dailyPoem
         .then(function (data) {
@@ -38,17 +40,17 @@ app.controller("HomeController", [
             date: $scope.today,
             poem: $scope.poemData,
           });
+          //return library back to a storable string
+          $scope.poemLibrary = JSON.stringify($scope.poemLibrary);
+          localStorage.setItem("poemLibrary", $scope.poemLibrary);
+          console.log("After set statement");
+          console.log($scope.poemLibrary);
         })
         .catch(function (error) {
           console.error("Error fetching daily poem:", error);
         });
 
       //add poem together with date to local storage
-
-      //return library back to a storable string
-      localStorage.setItem("poemLibrary", JSON.stringify($scope.poemLibrary));
-      console.log("After set statement");
-      console.log($scope.poemLibrary);
     }
   },
 ]);
