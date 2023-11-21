@@ -15,3 +15,22 @@
     <p ng-repeat="line in poemData.lines track by $index">{{line}}</p>
   </div>
 </div>
+<!-- TODO add impressions section. It should be a form when now comment is written and and the text of the comment when submitted -->
+<div class="row m-5">
+  <div class="col-12">
+    <!-- form adds contet to $scope.comment -->
+    <form action="">
+      <div class="form-floating">
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea"
+        ></textarea>
+        <label for="floatingTextarea">Impressions</label>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary my-2">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
