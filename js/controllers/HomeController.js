@@ -47,8 +47,15 @@ app.controller("HomeController", [
     }
 
     // logic for comments
+    $scope.reviewLibrary =
+      JSON.parse(localStorage.getItem("reviewLibrary")) || [];
+    $scope.impressionsText = $scope.reviewLibrary[lastPosition];
     $scope.submitComment = () => {
       $scope.impressionsText = $scope.submittedText;
+      //add comment to local storage
+      $scope.reviewLibrary.push($scope.impressionsText);
+      $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
+      localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
     };
   },
 ]);
