@@ -2,7 +2,6 @@ app.controller("HomeController", [
   "$scope",
   "dailyPoem",
   function ($scope, dailyPoem) {
-    //TODO: Check local storage and compare localstorage.library[{{len-1}}] to the date current date
     //If current date is the last position, generate a new item.
 
     //get all poems up until now
@@ -11,24 +10,21 @@ app.controller("HomeController", [
     console.log(typeof $scope.poemLibrary);
 
     //check if a poem was added today yet
-    // comparing two dates.
     $scope.today = new Date().toDateString();
+    console.log("today");
+    console.log($scope.today);
 
     //get date of last item in poem library
     let lastPosition;
     if ($scope.poemLibrary.length !== 0) {
       lastPosition = $scope.poemLibrary.length - 1;
-      // console.log("Last position inside of condition " + lastPosition);
     } else {
       lastPosition = 0;
-      //console.log("Last position outside of condition " + lastPosition);
     }
 
     if ($scope.poemLibrary[lastPosition]) {
-      console.log("poemLibaray[lastPosition]");
-      console.log(typeof $scope.poemLibrary[lastPosition].date);
-      $scope.lastPositionDate = $scope.poemLibrary[lastPosition].date | "";
-      console.log($scope.lastPositionDate);
+      const lastPositionDate = $scope.poemLibrary[lastPosition].date;
+      $scope.lastPositionDate = $scope.poemLibrary[lastPosition].date;
     }
 
     if ($scope.today !== $scope.lastPositionDate) {
@@ -51,6 +47,8 @@ app.controller("HomeController", [
         });
 
       //add poem together with date to local storage
+    } else {
+      $scope.poemData = $scope.poemLibrary[lastPosition].poem;
     }
   },
 ]);
