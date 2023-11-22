@@ -2,8 +2,6 @@ app.controller("HomeController", [
   "$scope",
   "dailyPoem",
   function ($scope, dailyPoem) {
-    //If current date is the last position, generate a new item.
-
     //get all poems up until now
     // parts of the json data title, author, lines, linecount
     $scope.poemLibrary = JSON.parse(localStorage.getItem("poemLibrary")) || [];
