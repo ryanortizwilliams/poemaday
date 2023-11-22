@@ -10,16 +10,15 @@ app.controller("HomeController", [
     $scope.today = new Date().toDateString();
 
     //get date of last item in poem library
-    let lastPosition;
     if ($scope.poemLibrary.length !== 0) {
-      lastPosition = $scope.poemLibrary.length - 1;
+      $scope.lastPosition = $scope.poemLibrary.length - 1;
     } else {
-      lastPosition = 0;
+      $scope.lastPosition = 0;
     }
 
-    if ($scope.poemLibrary[lastPosition]) {
-      const lastPositionDate = $scope.poemLibrary[lastPosition].date;
-      $scope.lastPositionDate = $scope.poemLibrary[lastPosition].date;
+    if ($scope.poemLibrary[$scope.lastPosition]) {
+      const lastPositionDate = $scope.poemLibrary[$scope.lastPosition].date;
+      $scope.lastPositionDate = $scope.poemLibrary[$scope.lastPosition].date;
     }
 
     if ($scope.today !== $scope.lastPositionDate) {
@@ -41,19 +40,19 @@ app.controller("HomeController", [
 
       //add poem together with date to local storage
     } else {
-      $scope.poemData = $scope.poemLibrary[lastPosition].poem;
+      $scope.poemData = $scope.poemLibrary[$scope.lastPosition].poem;
     }
 
     // logic for comments
     $scope.reviewLibrary =
       JSON.parse(localStorage.getItem("reviewLibrary")) || [];
-    $scope.impressionsText = $scope.reviewLibrary[lastPosition];
+    $scope.impressionsText = $scope.reviewLibrary[$scope.lastPosition];
     $scope.submitComment = () => {
       $scope.impressionsText = $scope.submittedText;
       //add comment to local storage
       console.log("Type of reviewLibrary");
       console.log(typeof $scope.reviewLibrary);
-      $scope.reviewLibrary[lastPosition] = $scope.impressionsText;
+      $scope.reviewLibrary[$scope.lastPosition] = $scope.impressionsText;
 
       $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
       localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
@@ -61,7 +60,7 @@ app.controller("HomeController", [
 
     $scope.editComment = () => {
       // replace that position with edited version
-      $scope.reviewLibrary[lastPosition] = $scope.impressionsText;
+      $scope.reviewLibrary[$scope.lastPosition] = $scope.impressionsText;
       $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
       localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
     };
