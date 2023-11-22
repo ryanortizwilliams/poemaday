@@ -1,2 +1,25 @@
-<h1>{{test}}</h1>
-<p>{{passedParam}}</p>
+<div class="row my-4 d-flex text-center">
+  <p>
+    <i class="fa-solid fa-circle-arrow-left p-2 fs-4"></i> {{today | date: 'EEEE
+    M/dd'}}
+    <i class="fa-solid fa-circle-arrow-right px-2 fs-4"></i>
+  </p>
+</div>
+<div class="row text-center d-flex justify-content-center">
+  <div class="col-12 w-50">
+    <h1>{{poemData.title}}</h1>
+    <h6 class="mb-3">
+      By: {{poemData.author}} | {{poemData.linecount | number}} lines
+    </h6>
+    <hr />
+    <p ng-repeat="line in poemData.lines track by $index">{{line}}</p>
+  </div>
+</div>
+<div>
+  <div class="row m-5">
+    <div class="col-12">
+      <h5>Impressions</h5>
+      <p>{{impressionsText}}</p>
+    </div>
+  </div>
+</div>
