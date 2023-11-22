@@ -53,19 +53,30 @@ app.controller("HomeController", [
     $scope.submitComment = () => {
       $scope.impressionsText = $scope.submittedText;
       //add comment to local storage
-      $scope.reviewLibrary.push($scope.impressionsText);
+      console.log("Type of reviewLibrary");
+      console.log(typeof $scope.reviewLibrary);
+      $scope.reviewLibrary[lastPosition] = $scope.impressionsText;
+
       $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
       localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
     };
 
     $scope.editComment = () => {
-      console.log("button works");
-      console.log(typeof $scope.reviewLibrary);
-      console.log($scope.reviewLibrary[lastPosition]);
       // replace that position with edited version
       $scope.reviewLibrary[lastPosition] = $scope.impressionsText;
       $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
       localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
     };
+
+    // $scope.deleteComment = () => {
+    //   console.log("button works");
+    //   $scope.submittedText = "";
+    //   $scope.impressionsText = "";
+    //   delete $scope.reviewLibrary[lastPosition];
+    //   localStorage.setItem(
+    //     "reviewLibrary",
+    //     JSON.stringify($scope.reviewLibrary)
+    //   );
+    // };
   },
 ]);
