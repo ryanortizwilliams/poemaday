@@ -11,6 +11,10 @@ app.config(function ($routeProvider) {
       controller: "OverviewController",
       templateUrl: "/views/mylogs.html",
     })
+    .when("/entry/:id", {
+      controller: "EntryController",
+      templateUrl: "/views/entry.html",
+    })
     .otherwise({
       redirectTo: "/",
     });
