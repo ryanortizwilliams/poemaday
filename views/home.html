@@ -1,7 +1,8 @@
 <div class="row my-4 d-flex text-center">
   <p>
-    <i class="fa-solid fa-circle-arrow-left"></i> {{today | date: 'EEEE M/dd'}}
-    <i class="fa-solid fa-circle-arrow-right"></i>
+    <i class="fa-solid fa-circle-arrow-left p-2 fs-4"></i> {{today | date: 'EEEE
+    M/dd'}}
+    <i class="fa-solid fa-circle-arrow-right px-2 fs-4"></i>
   </p>
 </div>
 
@@ -13,5 +14,90 @@
     </h6>
     <hr />
     <p ng-repeat="line in poemData.lines track by $index">{{line}}</p>
+  </div>
+</div>
+<div class="row m-5">
+  <div class="col-12">
+    <form
+      ng-show="!impressionsText"
+      ng-submit="submitComment($scope.submittedText)"
+    >
+      <div class="form-floating">
+        <textarea
+          ng-model="submittedText"
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea"
+        ></textarea>
+        <label for="floatingTextarea">Impressions</label>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary my-2">Submit</button>
+      </div>
+    </form>
+    <div ng-show="impressionsText">
+      <h5>Impressions</h5>
+      <p>{{impressionsText}}</p>
+      <button
+        type="button"
+        class="btn btn-sm btn-secondary"
+        data-bs-toggle="modal"
+        data-bs-target="#editModal"
+      >
+        Edit
+      </button>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="editModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="editModalLabel">Edit</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <textarea
+                  class="w-100"
+                  name=""
+                  id=""
+                  rows="10"
+                  ng-model="impressionsText"
+                ></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                ng-click="editComment()"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <button class="btn btn-sm btn-danger" ng-click="deleteComment()">
+        Delete
+      </button> -->
+    </div>
   </div>
 </div>

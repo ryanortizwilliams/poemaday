@@ -5,14 +5,11 @@ app.controller("HomeController", [
     //If current date is the last position, generate a new item.
 
     //get all poems up until now
+    // parts of the json data title, author, lines, linecount
     $scope.poemLibrary = JSON.parse(localStorage.getItem("poemLibrary")) || [];
-    console.log("Before anything is added");
-    console.log(typeof $scope.poemLibrary);
 
     //check if a poem was added today yet
     $scope.today = new Date().toDateString();
-    console.log("today");
-    console.log($scope.today);
 
     //get date of last item in poem library
     let lastPosition;
@@ -39,8 +36,6 @@ app.controller("HomeController", [
           //return library back to a storable string
           $scope.poemLibrary = JSON.stringify($scope.poemLibrary);
           localStorage.setItem("poemLibrary", $scope.poemLibrary);
-          console.log("After set statement");
-          console.log($scope.poemLibrary);
         })
         .catch(function (error) {
           console.error("Error fetching daily poem:", error);
@@ -50,7 +45,38 @@ app.controller("HomeController", [
     } else {
       $scope.poemData = $scope.poemLibrary[lastPosition].poem;
     }
+
+    // logic for comments
+    $scope.reviewLibrary =
+      JSON.parse(localStorage.getItem("reviewLibrary")) || [];
+    $scope.impressionsText = $scope.reviewLibrary[lastPosition];
+    $scope.submitComment = () => {
+      $scope.impressionsText = $scope.submittedText;
+      //add comment to local storage
+      console.log("Type of reviewLibrary");
+      console.log(typeof $scope.reviewLibrary);
+      $scope.reviewLibrary[lastPosition] = $scope.impressionsText;
+
+      $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
+      localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
+    };
+
+    $scope.editComment = () => {
+      // replace that position with edited version
+      $scope.reviewLibrary[lastPosition] = $scope.impressionsText;
+      $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
+      localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
+    };
+
+    // $scope.deleteComment = () => {
+    //   console.log("button works");
+    //   $scope.submittedText = "";
+    //   $scope.impressionsText = "";
+    //   delete $scope.reviewLibrary[lastPosition];
+    //   localStorage.setItem(
+    //     "reviewLibrary",
+    //     JSON.stringify($scope.reviewLibrary)
+    //   );
+    // };
   },
 ]);
-
-// parts of the json data title, author, lines, linecount
