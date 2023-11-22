@@ -57,5 +57,15 @@ app.controller("HomeController", [
       $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
       localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
     };
+
+    $scope.editComment = () => {
+      console.log("button works");
+      console.log(typeof $scope.reviewLibrary);
+      console.log($scope.reviewLibrary[lastPosition]);
+      // replace that position with edited version
+      $scope.reviewLibrary[lastPosition] = $scope.impressionsText;
+      $scope.reviewLibrary = JSON.stringify($scope.reviewLibrary);
+      localStorage.setItem("reviewLibrary", $scope.reviewLibrary);
+    };
   },
 ]);

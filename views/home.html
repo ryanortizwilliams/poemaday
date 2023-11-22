@@ -16,11 +16,8 @@
     <p ng-repeat="line in poemData.lines track by $index">{{line}}</p>
   </div>
 </div>
-<!-- TODO add impressions section. It should be a form when now comment is written and and the text of the comment when submitted -->
 <div class="row m-5">
   <div class="col-12">
-    <!-- form adds contet to $scope.comment -->
-    <!-- TODO: Add interactivity to form -->
     <form
       ng-show="!impressionsText"
       ng-submit="submitComment($scope.submittedText)"
@@ -75,7 +72,7 @@
                   name=""
                   id=""
                   rows="10"
-                  ng-model="editText"
+                  ng-model="impressionsText"
                 ></textarea>
               </div>
             </div>
@@ -90,7 +87,7 @@
               <button
                 type="button"
                 class="btn btn-primary"
-                ng-click="submitComment($scope.editText)"
+                ng-click="editComment()"
               >
                 Save changes
               </button>
