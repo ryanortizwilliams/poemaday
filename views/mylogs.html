@@ -11,7 +11,11 @@
           {{poemData.poem.title}} - {{poemData.poem.author}}
         </h5>
         <p class="card-text">{{reviewLibrary[$index]}}</p>
-        <a href="#" class="btn btn-sm btn-primary">Read the Poem</a>
+        <a
+          ng-href="http://127.0.0.1:5500/#!/entry/{{poemLibrary.indexOf(poemData)}}"
+          class="btn btn-sm btn-primary"
+          >Read the Poem</a
+        >
       </div>
     </div>
   </div>
