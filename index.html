@@ -45,12 +45,18 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" ng-href="http://127.0.0.1:5500/#!/mylogs"
+              <a
+                class="nav-link active"
+                ng-href="http://127.0.0.1:5500/#!/mylogs"
                 >My Logs</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link">Options</a>
+              <a
+                class="nav-link active"
+                ng-href="http://127.0.0.1:5500/#!/options"
+                >Options</a
+              >
             </li>
           </ul>
         </div>
@@ -75,6 +81,7 @@
     <script src="js/controllers/HomeController.js"></script>
     <script src="js/controllers/OverviewController.js"></script>
     <script src="js/controllers/EntryController.js"></script>
+    <script src="js/controllers/OptionsController.js"></script>
     <!-- Services -->
     <script src="js/services/dailyPoem.js"></script>
     <!-- Directives -->
