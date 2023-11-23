@@ -1,6 +1,10 @@
 <div class="row my-4 d-flex text-center">
   <p>
-    <i class="fa-solid fa-circle-arrow-left p-2 fs-4"></i>{{date}}
-    <i class="fa-solid fa-circle-arrow-right px-2 fs-4"></i>
+    <a ng-href="http://127.0.0.1:5500/#!/entry/{{previousPage}}"
+      ><i class="fa-solid fa-circle-arrow-left p-2 fs-4"></i></a
+    >{{date}}
+    <a ng-href="http://127.0.0.1:5500/#!/entry/{{nextPage}}">
+      <i class="fa-solid fa-circle-arrow-right px-2 fs-4"></i
+    ></a>
   </p>
 </div>

@@ -7,21 +7,21 @@ app.directive("pageTurner", function () {
       console.log(scope.data.length);
       scope.date = scope.data[scope.index].date;
 
-      //TODO write logic for routing urls limits
-      //check for first or final page
-      if (scope.index + 1 <= scope.data.length) {
-        scope.nextPage = scope.index + 1;
+      // Determine next page values
+      const maxValue = scope.data.length - 1;
+      const minValue = 0;
+
+      if (scope.index + 1 <= maxValue) {
+        scope.nextPage = parseInt(scope.index) + 1;
       } else {
         scope.nextPage = scope.index;
       }
 
-      if (scope.index - 1 >= scope.data.length) {
-        scope.nextPage = scope.index - 1;
+      if (scope.index - 1 >= minValue) {
+        scope.previousPage = scope.index - 1;
       } else {
-        scope.nextPage = scope.index;
+        scope.previousPage = scope.index;
       }
-
-      scope.previousPage = scope.index - 1;
     },
   };
 });
