@@ -15,6 +15,10 @@ app.config(function ($routeProvider) {
       controller: "EntryController",
       templateUrl: "/views/entry.html",
     })
+    .when("/options", {
+      controller: "OptionsController",
+      templateUrl: "/views/options.html",
+    })
     .otherwise({
       redirectTo: "/",
     });
