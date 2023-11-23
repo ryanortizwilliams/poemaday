@@ -11,14 +11,14 @@ app.directive("pageTurner", function () {
       const maxValue = scope.data.length - 1;
       const minValue = 0;
 
-      if (scope.index + 1 <= maxValue) {
+      if (parseInt(scope.index) + 1 <= maxValue) {
         scope.nextPage = parseInt(scope.index) + 1;
       } else {
         scope.nextPage = scope.index;
       }
 
-      if (scope.index - 1 >= minValue) {
-        scope.previousPage = scope.index - 1;
+      if (parseInt(scope.index) - 1 >= minValue) {
+        scope.previousPage = parseInt(scope.index) - 1;
       } else {
         scope.previousPage = scope.index;
       }
