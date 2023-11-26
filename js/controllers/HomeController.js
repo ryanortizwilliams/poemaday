@@ -46,7 +46,10 @@ app.controller("HomeController", [
     // logic for comments
     $scope.reviewLibrary =
       JSON.parse(localStorage.getItem("reviewLibrary")) || [];
-    $scope.impressionsText = $scope.reviewLibrary[$scope.lastPosition];
+    if ($scope.reviewLibrary.length === $scope.poemLibrary.length) {
+      $scope.impressionsText = $scope.reviewLibrary[$scope.lastPosition];
+    }
+
     $scope.submitComment = () => {
       $scope.impressionsText = $scope.submittedText;
       //add comment to local storage
